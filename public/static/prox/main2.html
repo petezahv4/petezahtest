@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PeteZah | Proxy</title>
+    <link rel="icon" href="storage/images/logo-png-removebg-preview.png" type="image/x-icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <meta property="og:title" content="PeteZah | Proxy">
+    <meta property="og:description" content="Next-gen proxy browsing">
+    <meta property="og:image" content="/storage/images/logo-png-removebg-preview.png">
+    <meta name="keywords" content="PeteZah Proxy, bypass restrictions, web proxy">
+
+    <style>
+        <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Arial', sans-serif;
+        font-weight: 400;
+    }
+
+    body, html {
+        height: 100%;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        background-color: #05080f; /* Darker background */
+        color: #d0d0d0;
+    }
+
+    .tabs {
+        display: flex;
+        align-items: center;
+        background-color: #121929;
+        padding: 4px 6px;
+        border-bottom: 1px solid #1e2a44;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+        overflow-x: auto;
+    }
+
+    .tab {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 6px 12px 6px 16px;
+        color: #a0b0cc;
+        cursor: pointer;
+        background-color: #121929;
+        border-radius: 8px;
+        margin-right: 4px;
+        transition: all 0.2s ease;
+        max-width: 340px;
+        min-width: 180px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        position: relative;
+        border-bottom: 1px solid #1e2a44;
+    }
+
+    .tab:last-child {
+        border-bottom: none;
+    }
+
+    .tab.active {
+        background-color: #1e2a44;
+        color: #ffffff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    }
+
+    .tab:hover {
+        background-color: #182133;
+        color: #ffffff;
+    }
+
+    .tab .close-button {
+        margin-left: auto;
+        padding-left: 10px;
+        color: #a0b0cc;
+        font-size: 14px;
+        cursor: pointer;
+        transition: color 0.2s ease;
+    }
+
+    .tab .close-button:hover {
+        color: #ff4444;
+    }
+
+    .add-tab-button {
+        padding: 6px 12px;
+        cursor: pointer;
+        background-color: #121929;
+        color: #d0d0d0;
+        border: none;
+        border-radius: 8px;
+        font-size: 18px;
+        transition: all 0.2s ease;
+    }
+
+    .add-tab-button:hover {
+        background-color: #182133;
+    }
+
+    .navbar {
+        display: flex;
+        align-items: center;
+        background-color: #121929;
+        padding: 4px 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Frail white border */
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .navbar-left, .navbar-right {
+        display: flex;
+        gap: 12px;
+        flex-shrink: 0;
+    }
+
+    .navbar button {
+        background: none;
+        border: none;
+        color: #a0b0cc;
+        cursor: pointer;
+        font-size: 14px;
+        transition: color 0.2s ease;
+    }
+
+    .navbar button:hover {
+        color: #ffffff;
+    }
+
+    .search-container {
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        background-color: #1e2a44;
+        border-radius: 20px;
+        margin: 0 12px;
+        padding: 2px;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    .search-container input {
+        flex-grow: 1;
+        padding: 6px 10px;
+        border: 1px solid #1e2a44;
+        background: #1e2a44;
+        color: #d0d0d0;
+        font-size: 13px;
+        outline: none;
+        transition: all 0.2s ease;
+        border-radius: 20px;
+    }
+
+    .search-container input:hover {
+        background: #252f4a;
+    }
+
+    .search-container input:focus {
+        background: #252f4a;
+        outline: none;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+        border-color: #0066cc;
+    }
+
+    .search-container button {
+        padding: 6px;
+        color: #a0b0cc;
+    }
+
+    .content-wrapper {
+        flex-grow: 1;
+        overflow: hidden;
+        position: relative;
+    }
+
+    iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: none;
+        background-color: #ffffff;
+    }
+
+    iframe.active {
+        display: block;
+    }
+</style>
+    </style>
+</head>
+<body>
+    <div class="tabs" id="tabs">
+        <div class="tab active" onclick="selectTab(this)">New Tab <span class="close-button" onclick="closeTab(event, this)">×</span></div>
+        <button class="add-tab-button" onclick="addTab()">+</button>
+    </div>
+    <div class="navbar" id="navbar">
+        <div class="navbar-left">
+            <button onclick="goHome()"><i class="fa fa-home"></i></button>
+            <button onclick="goBack()"><i class="fas fa-arrow-left"></i></button>
+            <button onclick="goForward()"><i class="fas fa-arrow-right"></i></button>
+            <button onclick="refresh()"><i class="fas fa-redo"></i></button>
+        </div>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search or enter a URL" onkeydown="if(event.key === 'Enter') search()">
+            <button onclick="search()"><i class="fas fa-search"></i></button>
+        </div>
+        <div class="navbar-right">
+            <button onclick="toggleFullscreen()"><i class="fas fa-expand"></i></button>
+            <button onclick="settings()"><i class="fa fa-cog"></i></button>
+        </div>
+    </div>
+    <div class="content-wrapper" id="content-wrapper">
+        <iframe class="tab-iframe active" src="/static/index.html" id="iframe-1"></iframe>
+    </div>
+
+    <script>
+    let tabCount = 1;
+    const proxyPrefix = "https://petezahgames.com/static/embed.html#";
+    const settingsPrefix = "https://petezahgames.com/static/prox/settings";
+    let tabHistory = []; // Array to store tab visit history
+
+    function selectTab(tabElement) {
+        const tabs = document.querySelectorAll('.tab');
+        const iframes = document.querySelectorAll('.tab-iframe');
+        tabs.forEach(tab => tab.classList.remove('active'));
+        iframes.forEach(iframe => iframe.classList.remove('active'));
+        tabElement.classList.add('active');
+        const tabIndex = [...tabElement.parentElement.children].indexOf(tabElement);
+        const iframe = iframes[tabIndex];
+        iframe.classList.add('active');
+        updateSearchBar(iframe);
+        updateUrlForTab(iframe);
+        
+        // Update tab history
+        const currentTabIndex = tabIndex;
+        tabHistory = tabHistory.filter(index => index !== currentTabIndex); // Remove if already in history
+        tabHistory.push(currentTabIndex); // Add to end of history
+    }
+
+    function addTab(url = "/static/index.html") {
+        tabCount++;
+        const tabsContainer = document.getElementById('tabs');
+        const newTab = document.createElement('div');
+        newTab.classList.add('tab');
+        newTab.textContent = "New Tab";
+        newTab.innerHTML += ' <span class="close-button" onclick="closeTab(event, this)">×</span>';
+        newTab.onclick = () => selectTab(newTab);
+        tabsContainer.insertBefore(newTab, document.querySelector('.add-tab-button'));
+
+        const iframe = document.createElement('iframe');
+        iframe.classList.add('tab-iframe');
+        iframe.id = `iframe-${tabCount}`;
+        iframe.src = url;
+        document.getElementById('content-wrapper').appendChild(iframe);
+        selectTab(newTab);
+    }
+
+    function closeTab(event, closeButton) {
+        event.stopPropagation();
+        const tab = closeButton.parentElement;
+        const tabIndex = [...tab.parentElement.children].indexOf(tab);
+        const iframe = document.getElementById(`iframe-${tabIndex + 1}`);
+        
+        // Remove tab from history
+        tabHistory = tabHistory.filter(index => index !== tabIndex);
+        
+        if (tab.classList.contains('active') && tabCount > 1) {
+            // Select last visited tab from history
+            const lastVisitedIndex = tabHistory.length > 0 ? tabHistory[tabHistory.length - 1] : 0;
+            const tabs = document.querySelectorAll('.tab');
+            const nextTab = tabs[lastVisitedIndex];
+            if (nextTab && nextTab.className === 'tab') selectTab(nextTab);
+        }
+        
+        tab.remove();
+        iframe.remove();
+        tabCount--;
+        if (tabCount === 0) addTab();
+    }
+
+    function updateTabName(iframe, tabElement) {
+        iframe.onload = () => {
+            const title = iframe.contentDocument?.title || "New Tab";
+            tabElement.childNodes[0].textContent = title.substring(0, 30);
+            updateSearchBar(iframe);
+        };
+    }
+
+    function getUnproxifiedUrl(proxifiedUrl) {
+        if (proxifiedUrl.startsWith(proxyPrefix)) {
+            return proxifiedUrl.replace(proxyPrefix, "");
+        }
+        return proxifiedUrl;
+    }
+
+    function updateSearchBar(iframe) {
+        iframe.onload = () => {
+            const unproxifiedUrl = getUnproxifiedUrl(iframe.src);
+            document.getElementById('search-input').value = unproxifiedUrl;
+            const activeTab = document.querySelector('.tab.active');
+            updateTabName(iframe, activeTab);
+        };
+    }
+
+    function updateUrlForTab(iframe) {
+        let url = iframe.src;
+
+        // Replace /static/index.html, https://petezahgames.com/static/index.html, or blank screen with petezah://newtab
+        if (url === "https://petezahgames.com/static/index.html" || url === "/static/index.html" || url === "") {
+            history.pushState(null, "", "petezah://newtab");
+        }
+
+        // Replace certain proxified URLs with petezah://settings
+        if (url === "https://petezahgames.com/static/prox/settings" || url === "/static/prox/settings" || url === "/static/prox/settings.html") {
+            history.pushState(null, "", "petezah://settings");
+        }
+
+        // Update browser URL to match the selected tab's URL
+        else {
+            history.pushState(null, "", url);
+        }
+    }
+
+    function search() {
+        const input = document.getElementById('search-input').value.trim();
+        if (!input) return;
+        const iframe = document.querySelector('.tab-iframe.active');
+        const url = input.startsWith('http') ? input : `https://duckduckgo.com/?q=${encodeURIComponent(input)}`;
+        iframe.src = `${proxyPrefix}${url}`;
+        document.getElementById('search-input').value = url;
+        const activeTab = document.querySelector('.tab.active');
+        updateTabName(iframe, activeTab);
+        updateUrlForTab(iframe);
+    }
+
+    function goHome() {
+        const iframe = document.querySelector('.tab-iframe.active');
+        iframe.src = "/static/index.html";
+        document.getElementById('search-input').value = "/static/index.html";
+        const activeTab = document.querySelector('.tab.active');
+        activeTab.childNodes[0].textContent = "New Tab";
+        updateUrlForTab(iframe);
+    }
+
+    function goBack() {
+        const iframe = document.querySelector('.tab-iframe.active');
+        iframe.contentWindow.history.back();
+    }
+
+    function goForward() {
+        const iframe = document.querySelector('.tab-iframe.active');
+        iframe.contentWindow.history.forward();
+    }
+
+    function refresh() {
+        const iframe = document.querySelector('.tab-iframe.active');
+        iframe.contentWindow.location.reload();
+    }
+
+    function settings() {
+        const iframe = document.querySelector('.tab-iframe.active');
+        iframe.src = "/static/prox/settings";
+        document.getElementById('search-input').value = "/static/prox/settings";
+        const activeTab = document.querySelector('.tab.active');
+        activeTab.childNodes[0].textContent = "Settings";
+        updateUrlForTab(iframe);
+    }
+
+    function toggleFullscreen() {
+        const iframe = document.querySelector('.tab-iframe.active');
+        if (!document.fullscreenElement) {
+            iframe.requestFullscreen();
+        } else {
+            document.exitFullscreen();
+        }
+    }
+
+    const initialIframe = document.querySelector('.tab-iframe.active');
+    const initialTab = document.querySelector('.tab.active');
+    updateTabName(initialIframe, initialTab);
+    </script>
+</body>
+</html>
+

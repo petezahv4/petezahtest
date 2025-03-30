@@ -1,1 +1,82 @@
-<h1>Yo, there aint nothin here (404 btw)</h1>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, minimal-ui, shrink-to-fit=yes">
+    <title>proxy</title>
+    <link rel="stylesheet" href="/storage/css/styles.css">
+    <style>
+        body {
+            text-align: center;
+            margin: 0;
+            background-color: #141414;
+        }
+
+        header {
+            text-align: center;
+        }
+
+        .rainbowtitle {
+            display: inline-block;
+        }
+
+        h1 {
+            color: #fff;
+        }
+
+        /* Loading screen */
+        .loading-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #141414;
+            color: #fff;
+        }
+
+        .spinner {
+            margin-left: 20px;
+            border: 8px solid transparent;
+            border-top: 8px solid #fff;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loading-screen">
+        <div>
+            <h1>Loading your content!</h1>
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+    <script>
+        // Wait for 0.5 seconds before reloading to the 404 page
+        setTimeout(function() {
+            window.location.reload();
+        }, 500); // 0.5 seconds delay
+    </script>
+
+    <script src="uv/uv.bundle.js"></script>
+    <script src="uv/uv.config.js"></script>
+    <script src="register-sw.js"></script>
+    <script src="embed.js"></script>
+</body>
+
+</html>

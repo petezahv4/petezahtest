@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-SHE360M0YP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-SHE360M0YP');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6640595376330309"
+         crossorigin="anonymous"></script>
+
+    <title>PeteZah | Games</title>
+    <link rel="icon" type="icon/x-icon" href="/storage/images/logo-png-removebg-preview.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <meta name="description" content="Pete Zah, game on" />
+    <meta name="keywords" content="Proxy, Unblocker, Pete Zah Unblocker, Pete Zah Games, Pete Zah" />
+    
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #0A1D37; /* Dark Blue Background */
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .god-rays {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 550px;
+            --stripes: repeating-linear-gradient(100deg, rgba(20, 40, 60, 0.8) 0%, rgba(20, 40, 60, 0.8) 7%, transparent 10%, transparent 12%, rgba(20, 40, 60, 0.8) 16%);
+            --rays: repeating-linear-gradient(100deg, rgba(30, 50, 90, 0.9) 10%, rgba(20, 40, 80, 0.9) 15%, rgba(30, 50, 90, 0.9) 20%, rgba(20, 40, 80, 0.9) 25%, rgba(30, 50, 90, 0.9) 30%);
+            background-image: var(--stripes), var(--rays);
+            background-size: 300%, 200%;
+            background-position: 50% 50%, 50% 50%;
+            animation: fadeIn 2s ease;
+            mask-image: radial-gradient(ellipse at 100% 0%, rgba(255, 255, 255, 0) 40%, transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse at 100% 0%, white 40%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .god-rays::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: var(--stripes), var(--rays);
+            background-size: 200%, 100%;
+            animation: god-rays 40s linear infinite;
+            background-attachment: fixed;
+            mix-blend-mode: difference;
+        }
+
+        .container-iframe {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            width: 90vw; /* Slightly reduced to give breathing space around the iframe */
+            z-index: 99;
+        }
+
+        .iframe-container {
+            border-radius: 20px;
+            width: 100%;
+            height: 80vh;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+            border: 4px solid #ffffff;
+            background-color: #0A1D37;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            border: none;
+            border-radius: 20px;
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%; /* Controls width matches iframe's width */
+            height: 8vh;
+            background: linear-gradient(145deg, #0A1D37, #020C1B); /* Gradient from dark blue to very dark blue */
+            border-radius: 20px;
+            box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.6);
+            padding: 0 30px;
+            border: 2px solid white; /* Slim white border around the controls */
+            position: absolute;
+            bottom: 0;
+        }
+
+        .logo {
+            width: 40px; /* Logo size */
+            margin-right: 8px; /* Reduced spacing between the logo and other elements */
+            cursor: pointer; /* Same cursor as controls */
+        }
+
+        .fps-counter {
+            color: white;
+            font-size: 18px;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 5px 10px;
+            border-radius: 12px;
+            margin-left: 40px; /* 40px to the right of the logo */
+        }
+
+        .control-icons {
+            display: flex;
+            align-items: center;
+        }
+
+        .icon {
+            color: #fff;
+            cursor: pointer;
+            font-size: 24px;
+            margin-left: 40px; /* Doubled space between right controls */
+            transition: transform 0.3s ease;
+        }
+
+        .icon:hover {
+            transform: scale(1.2);
+        }
+
+        .controls i:last-child {
+            margin-right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="god-rays"></div>
+    
+    <div class="container-iframe header-text">
+        <div class="iframe-container">
+            <iframe sandbox="allow-scripts allow-pointer-lock allow-forms allow-same-origin allow-downloads" id="myIframe" src=""></iframe>
+        </div>
+        <div class="controls">
+            <!-- Logo on the left -->
+            <img src="/storage/images/logo-png-removebg-preview.png" alt="Logo" class="logo">
+            
+            <!-- FPS counter -->
+            <div class="fps-counter" id="fpsCounter">FPS: 0</div>
+            
+            <!-- Other controls -->
+            <div class="control-icons">
+                <i class="fas fa-sync icon" onclick="refreshIframe()"></i>
+                <i class="fa-solid fa-comment icon" id="whysofeinious-button"></i>
+                <i class="fa-solid fa-pager icon" id="openIframeSource"></i>
+                <!-- Fullscreen button as the last icon -->
+                <i class="fas fa-expand icon" onclick="toggleFullscreen()"></i>
+            </div>
+        </div>
+    </div>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6640595376330309"
+     crossorigin="anonymous"></script>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-6640595376330309"
+         data-ad-slot="3791895609"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const url = urlParams.get('url');
+        const iframe = document.getElementById('myIframe');
+
+        if (url) {
+            iframe.src = url;
+            localStorage.setItem('iframeUrl', url);
+            history.replaceState(null, '', window.location.pathname);
+        } else {
+            const savedUrl = localStorage.getItem('iframeUrl');
+            if (savedUrl) {
+                iframe.src = savedUrl;
+            } else {
+                console.error("No URL parameter provided and no saved URL found.");
+            }
+        }
+
+        function toggleFullscreen() {
+            const iframe = document.getElementById('myIframe');
+            if (iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+            } else if (iframe.mozRequestFullScreen) {
+                iframe.mozRequestFullScreen();
+            } else if (iframe.webkitRequestFullscreen) {
+                iframe.webkitRequestFullscreen();
+            } else if (iframe.msRequestFullscreen) {
+                iframe.msRequestFullscreen();
+            }
+        }
+
+        function refreshIframe() {
+            const iframe = document.getElementById('myIframe');
+            iframe.src = iframe.src;
+        }
+
+        document.getElementById('whysofeinious-button').addEventListener('click', function() {
+            const script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/@widgetbot/crate@3';
+            script.async = true;
+            script.defer = true;
+            document.body.appendChild(script);
+
+            script.onload = function() {
+                new Crate({
+                    server: '1337108365591187640', 
+                    channel: '1345454451904745673' 
+                });
+            };
+        });
+
+        document.getElementById('openIframeSource').addEventListener('click', function() {
+            var iframeSrc = document.getElementById('myIframe').src;
+            var link = document.createElement('a');
+            link.href = iframeSrc;
+            link.target = '_blank';
+            link.click();
+        });
+
+        // FPS Counter
+        let lastTime = performance.now();
+        let frameCount = 0;
+        let fps = 0;
+
+        function updateFPS() {
+            const currentTime = performance.now();
+            frameCount++;
+
+            if (currentTime - lastTime >= 1000) {
+                fps = frameCount;
+                document.getElementById('fpsCounter').textContent = `FPS: ${fps}`;
+                frameCount = 0;
+                lastTime = currentTime;
+            }
+
+            requestAnimationFrame(updateFPS);
+        }
+
+        updateFPS();
+    </script>
+    <script>
+        // List of blocked IPs (you can expand this)
+        const blockedIPs = [
+            "151.188.97.170",
+            "other ip example",
+        ];
+
+        // Function to get user's IP and check it
+        async function checkIP() {
+            try {
+                // Fetch user's IP from ipify API
+                const response = await fetch('https://api.ipify.org?format=json');
+                const data = await response.json();
+                const userIP = data.ip;
+
+                // Check if IP is in blocked list
+                if (blockedIPs.includes(userIP)) {
+                    // Redirect to blocked page
+                    window.location.href = "/pages/other/blocked.html";
+                } else {
+                    // Show welcome message
+                    document.getElementById('mainContent').innerHTML = `
+                        <h1>Welcome</h1>
+                        <p>Your IP (${userIP}) is allowed.</p>
+                        <p>This is the main content of the website.</p>
+                    `;
+                }
+            } catch (error) {
+                console.error('Error fetching IP:', error);
+                document.getElementById('mainContent').innerHTML = `
+                    <h1>Error</h1>
+                    <p>Could not verify your IP. Please try again later.</p>
+                `;
+            }
+        }
+
+        // Run the IP check when page loads
+        window.onload = checkIP;
+    </script>
+</body>
+</html>
