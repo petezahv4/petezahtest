@@ -1,3 +1,6 @@
+import { createBareServer } from "@tomphttp/bare-server-node";
+
+const bareServer = createBareServer("/bare/");
 app.use(express.static(pubDir));
 
 app.get("/uv/config.js", (req, res) => {
@@ -13,12 +16,27 @@ app.use((req, res) => {
         res.status(404).sendFile(path.join(pubDir, "404.html"));
 });
 
-server.on("upgrade", (req, socket, head) => {
-        if (req.url.endsWith("/wisp/")) {
-                wisp.routeRequest(req, socket, head);
-        } else {
-                socket.end();
-        }
+server.on("request", async (req, res) => {
+  // Listen for request abort events on the underlying request object
+  req.on("aborted", () => {
+    console.warn("Underlying request aborted:", req.url);
+  });
+  try {
+    if (bareServer.shouldRoute(req)) {
+      bareServer.routeRequest(req, res);
+    } else {
+      app(req, res);
+    }
+  } catch (error) {
+    if (error.message && error.message.includes("aborted")) {
+      console.warn("Request aborted by client during processing:", error);
+      return;
+    }
+    console.error("Request error:", error);
+    res.statusCode = 500;
+    res.write(String(error));
+    res.end();
+  }
 });
 
 server.listen(port, "0.0.0.0", () => {
