@@ -14,7 +14,7 @@ const app = express();
 app.use(express.static(publicPath));
 // Load vendor files last.
 // The vendor's config.js won't conflict with our config.js inside the publicPath directory.
-app.use("/szvy/", express.static(uvPath));
+app.use("/petezah/", express.static(uvPath));
 
 // Error for everything else
 app.use((req, res) => {
