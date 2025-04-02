@@ -1,6 +1,6 @@
 import { createBareServer } from "@tomphttp/bare-server-node";
 
-const bareServer = createBareServer("/b/");
+const bareServer = createBareServer("/bare/");
 app.use(express.static(pubDir));
 
 app.get("/uv/config.js", (req, res) => {
