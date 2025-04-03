@@ -3,6 +3,12 @@ import express from "express";
 import { createServer } from "node:http";
 import { join } from "node:path";
 import { hostname } from "node:os";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
+// Get the directory name of the current file
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const bare = createBareServer("/bare/");
 const app = express();
