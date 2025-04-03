@@ -3,12 +3,12 @@ import express from "express";
 import { createServer } from "node:http";
 import { join } from "node:path";
 import { hostname } from "node:os";
-import { fileURLToPath } from "url";  // Import fileURLToPath to resolve the path
-import { dirname } from "path";  // Import dirname to extract the directory
+import { fileURLToPath } from "url";  // Import fileURLToPath from 'url'
+import { dirname } from "path";  // Import dirname from 'path'
 
-// Get the __dirname equivalent for ES Modules
-const __filename = fileURLToPath(import.meta.url);  // Convert the URL to a file path
-const __dirname = dirname(__filename);  // Extract the directory name from the file path
+// Deriving __dirname equivalent for ES modules
+const __filename = fileURLToPath(import.meta.url);  // Get file path from import.meta.url
+const __dirname = dirname(__filename);  // Get the directory name
 
 const bare = createBareServer("/bare/");
 const app = express();
