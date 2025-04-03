@@ -1,20 +1,19 @@
-
 import { createBareServer } from "@tomphttp/bare-server-node";
 import express from "express";
 import { createServer } from "node:http";
-import { publicPath } from "ultraviolet-static";
-import { uvPath } from "@titaniumnetwork-dev/ultraviolet";
 import { join } from "node:path";
 import { hostname } from "node:os";
 
 const bare = createBareServer("/bare/");
 const app = express();
 
-// Load our publicPath first and prioritize it over 
+// Set the public path to the 'public' directory
+const publicPath = join(__dirname, "public");
+
+// Load static files from the 'public' directory first and prioritize them
 app.use(express.static(publicPath));
-// Load vendor files last.
-// The vendor's config.js won't conflict with our config.js inside the publicPath directory.
-app.use("/petezah/", express.static(uvPath));
+// Load vendor files last (adjust path if necessary).
+app.use("/petezah/", express.static(publicPath)); // Adjust if necessary
 
 // Error for everything else
 app.use((req, res) => {
@@ -47,8 +46,6 @@ if (isNaN(port)) port = 80;
 server.on("listening", () => {
   const address = server.address();
 
-  // by default we are listening on 0.0.0.0 (every interface)
-  // we just need to list a few
   console.log("Listening on:");
   console.log(`\thttp://localhost:${address.port}`);
   console.log(`\thttp://${hostname()}:${address.port}`);
@@ -59,7 +56,6 @@ server.on("listening", () => {
   );
 });
 
-// https://expressjs.com/en/advanced/healthcheck-graceful-shutdown.html
 process.on("SIGINT", shutdown);
 process.on("SIGTERM", shutdown);
 
