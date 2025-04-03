@@ -2,13 +2,13 @@
   "name": "uv-app",
   "version": "1.0.0",
   "description": "Ultraviolet instance",
-  "type": "module",  // This ensures that your files are treated as ES modules
+  "type": "module",  
   "engines": {
     "npm": ">=7.0.0",
     "node": ">=16.0.0"
   },
   "scripts": {
-    "start": "node server.js"  // The entry point for your application
+    "start": "node server.js"
   },
   "keywords": [
     "proxy"
