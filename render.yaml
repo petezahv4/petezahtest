@@ -1,0 +1,12 @@
+# Exported from Render on 2025-02-24T04:59:45Z
+services:
+- type: web
+  name: skibiditoiletmath
+  runtime: node
+  repo: https://github.com/szvy/central
+  plan: free
+  region: oregon
+  buildCommand: npm i
+  startCommand: npm start
+  rootDir: Ultraviolet-App
+version: "1"

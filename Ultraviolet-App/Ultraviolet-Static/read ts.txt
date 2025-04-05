@@ -1,0 +1,1 @@
+hi. if you're wondering where my source code for my site is, its in the public folder. as in like, the first folder that says public, im just really goated and setup my ultraviolet to be really goated
