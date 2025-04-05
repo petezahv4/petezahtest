@@ -1,4 +1,3 @@
-
 import wisp from "wisp-server-node"
 import { createBareServer } from "@tomphttp/bare-server-node"
 import { uvPath } from "@titaniumnetwork-dev/ultraviolet"
@@ -48,7 +47,7 @@ server.on("upgrade", (req, socket, head) => {
 
 let port = parseInt(process.env.PORT || "");
 
-if (isNaN(port)) port = 8080; // set your port
+if (isNaN(port)) port = 3000; // set your port
 
 server.on("listening", () => {
     const address = server.address();
